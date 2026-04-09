@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -25,16 +25,16 @@ class DecodeVinRequest(BaseModel):
 
 class VehicleSpecs(BaseModel):
     vin: str
-    make: Optional[str] = None
-    model: Optional[str] = None
-    year: Optional[int] = None
-    trim: Optional[str] = None
-    engine: Optional[str] = None
-    transmission: Optional[str] = None
-    country_of_origin: Optional[str] = None
+    make: str | None = None
+    model: str | None = None
+    year: int | None = None
+    trim: str | None = None
+    engine: str | None = None
+    transmission: str | None = None
+    country_of_origin: str | None = None
     safety_features: list[str] = Field(default_factory=list)
-    recalls: Optional[list[dict[str, Any]]] = None
-    accident_history: Optional[dict[str, Any]] = None
+    recalls: list[dict[str, Any]] | None = None
+    accident_history: dict[str, Any] | None = None
 
     source: str = Field(..., description="local|nhtsa|vindecoder|ai")
     confidence: float = Field(..., ge=0.0, le=1.0)

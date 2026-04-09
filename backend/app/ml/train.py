@@ -1,9 +1,9 @@
 import joblib
 import pandas as pd
+from app.ml.dataset import load_training_data
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from app.ml.dataset import load_training_data
+
 
 def train_and_save():
     X, y_trim, y_engine, y_trans, y_class = load_training_data()
@@ -12,8 +12,7 @@ def train_and_save():
     
     encoders = {}
     models = {}
-    for target_name, y in zip(['trim', 'engine', 'transmission', 'vehicle_class'],
-                              [y_trim, y_engine, y_trans, y_class]):
+    for target_name, y in zip(['trim', 'engine', 'transmission', 'vehicle_class'], [y_trim, y_engine, y_trans, y_class], strict=True):
         le = LabelEncoder()
         y_enc = le.fit_transform(y)
         encoders[target_name] = le

@@ -1,7 +1,9 @@
+import re
+
 import cv2
 import numpy as np
 import pytesseract
-import re
+
 
 def extract_vin_from_image(image_bytes: bytes) -> str | None:
     nparr = np.frombuffer(image_bytes, np.uint8)

@@ -28,7 +28,7 @@ class VinDecoderExternalClient:
         # signature = HMAC-SHA1(apikey, f"{vin}|{timestamp}") -> hex
         # This keeps the client functional for typical "apikey only" gateways too (servers may ignore signature).
         ts = str(int(time.time()))
-        msg = f"{vin}|{ts}".encode("utf-8")
+        msg = f"{vin}|{ts}".encode()
         sig = hmac.new(settings.vindecoder_api_key.encode("utf-8"), msg, hashlib.sha1).hexdigest()
 
         url = f"{base}/decode/{vin}.json"

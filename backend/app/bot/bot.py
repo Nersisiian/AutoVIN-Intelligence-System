@@ -1,7 +1,8 @@
 import os
+
 import aiohttp
 from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
 API_BASE = os.getenv("API_BASE", "http://backend:8000")
 

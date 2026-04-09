@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 import httpx
 
@@ -20,10 +20,10 @@ class NhtsaClient:
             return resp.json()
 
     @staticmethod
-    def extract_best_effort(payload: dict[str, Any]) -> dict[str, Optional[str]]:
+    def extract_best_effort(payload: dict[str, Any]) -> dict[str, str | None]:
         # Payload format: { Results: [ { Variable, Value }, ... ] }
         results = payload.get("Results") or []
-        kv: dict[str, Optional[str]] = {}
+        kv: dict[str, str | None] = {}
         for item in results:
             var = item.get("Variable")
             val = item.get("Value")

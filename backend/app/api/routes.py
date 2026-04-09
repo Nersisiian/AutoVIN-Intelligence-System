@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.post("/decode-vin", response_model=DecodeVinResponse)
-async def decode_vin_endpoint(payload: DecodeVinRequest, db: AsyncSession = Depends(get_db)) -> DecodeVinResponse:
+async def decode_vin_endpoint(payload: DecodeVinRequest, db: AsyncSession = Depends(get_db)) -> DecodeVinResponse:  # noqa: B008
     result = await decode_vin(payload.vin, db=db)
     return DecodeVinResponse(**result)
 

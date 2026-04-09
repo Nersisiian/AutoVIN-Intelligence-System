@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
-from typing import Optional
-
+from datetime import UTC, datetime
 
 _WMI_COUNTRY_PREFIX = {
     "1": "United States",
@@ -55,7 +53,7 @@ _WMI_MAKE = {
 _YEAR_CODES = "ABCDEFGHJKLMNPRSTVWXY123456789"
 
 
-def _decode_year(year_code: str) -> Optional[int]:
+def _decode_year(year_code: str) -> int | None:
     year_code = year_code.upper()
     if year_code not in _YEAR_CODES:
         return None
@@ -66,7 +64,7 @@ def _decode_year(year_code: str) -> Optional[int]:
     # Pick the most plausible year relative to "now".
     # VIN year repeats every 30 years; choose the candidate closest to current year,
     # but never more than 1 year in the future (new model-year rollover tolerance).
-    now_year = datetime.now(tz=timezone.utc).year
+    now_year = datetime.now(tz=UTC).year
     candidates = [year_1980, year_2010]
     candidates = [y for y in candidates if y <= now_year + 1]
     if not candidates:
@@ -81,9 +79,9 @@ class LocalVinDecode:
     wmi: str
     vds: str
     vis: str
-    make: Optional[str]
-    year: Optional[int]
-    country_of_origin: Optional[str]
+    make: str | None
+    year: int | None
+    country_of_origin: str | None
 
 
 def decode_vin_locally(vin: str) -> LocalVinDecode:

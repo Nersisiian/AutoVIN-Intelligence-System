@@ -1,0 +1,8 @@
+﻿line-length = 120
+target-version = "py311"
+
+[lint]
+extend-ignore = ["E501", "UP045", "UP012", "UP017", "B008"]
+
+[lint.isort]
+known-first-party = ["app"]

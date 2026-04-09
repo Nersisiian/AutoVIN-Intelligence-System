@@ -1,6 +1,7 @@
+import random
+
 import requests
 from bs4 import BeautifulSoup
-import random
 
 USER_AGENTS = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ...',
@@ -31,6 +32,6 @@ def get_auction_info(vin: str) -> dict:
         resp = requests.get(url, headers=headers, timeout=10)
         # parsing logic
         result["iaai"] = {"available": True}
-    except:
+    except Exception:
         pass
     return result

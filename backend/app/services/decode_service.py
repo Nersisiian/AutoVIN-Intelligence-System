@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -21,7 +21,7 @@ def _cache_key(vin: str) -> str:
     return f"vin:decode:v2:{vin}"
 
 
-def _merge_safety(nhtsa_extracted: dict[str, Optional[str]]) -> list[str]:
+def _merge_safety(nhtsa_extracted: dict[str, str | None]) -> list[str]:
     feats: list[str] = []
     if nhtsa_extracted.get("abs") and nhtsa_extracted["abs"] != "Not Applicable":
         feats.append("ABS")

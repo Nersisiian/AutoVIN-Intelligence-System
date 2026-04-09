@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 import numpy as np
 from sklearn.feature_extraction import DictVectorizer
@@ -11,11 +10,11 @@ from sklearn.pipeline import Pipeline
 
 @dataclass(frozen=True)
 class AiEstimatedSpecs:
-    make: Optional[str]
-    model: Optional[str]
-    trim: Optional[str]
-    engine: Optional[str]
-    transmission: Optional[str]
+    make: str | None
+    model: str | None
+    trim: str | None
+    engine: str | None
+    transmission: str | None
     safety_features: list[str]
     confidence: float
 
@@ -59,7 +58,7 @@ class AiSpecEstimator:
         self._tx_model: Pipeline = Pipeline([("pre", pre), ("clf", clf())]).fit(X, y_tx)
 
     @staticmethod
-    def _bucket_year(year: Optional[int]) -> str:
+    def _bucket_year(year: int | None) -> str:
         if year is None:
             return "unknown"
         if year >= 2015:
@@ -68,7 +67,7 @@ class AiSpecEstimator:
             return "2010-2014"
         return "pre-2010"
 
-    def estimate(self, wmi: str, year: Optional[int]) -> AiEstimatedSpecs:
+    def estimate(self, wmi: str, year: int | None) -> AiEstimatedSpecs:
         x = [{"wmi": wmi[:3] if len(wmi) >= 3 else wmi[:2], "year_bucket": self._bucket_year(year)}]
 
         make = str(self._make_model.predict(x)[0])

@@ -2,6 +2,7 @@ import joblib
 import pandas as pd
 from app.ml.dataset import extract_features
 
+
 class VINSpecPredictor:
     def __init__(self, model_path: str = "app/ml/vin_model.pkl"):
         self.artifacts = joblib.load(model_path)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from typing import Any, Optional
+from typing import Any
 
 import redis.asyncio as redis
 
@@ -12,7 +12,7 @@ class Cache:
     def __init__(self, client: redis.Redis):
         self._client = client
 
-    async def get_json(self, key: str) -> Optional[dict[str, Any]]:
+    async def get_json(self, key: str) -> dict[str, Any] | None:
         raw = await self._client.get(key)
         if raw is None:
             return None

@@ -1,7 +1,8 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
-from app.services import vin_decoder, auction, ocr, ml_service
-from app.core.redis_client import redis_client
 import json
+
+from app.core.redis_client import redis_client
+from app.services import auction, ml_service, ocr
+from fastapi import APIRouter, File, HTTPException, UploadFile
 
 router = APIRouter()
 
@@ -24,7 +25,7 @@ async def predict_specs(vin: str):
     return result
 
 @router.post("/scan-vin-image")
-async def scan_vin_image(file: UploadFile = File(...)):
+async def scan_vin_image(file: UploadFile = File(...)):  # noqa: B008
     contents = await file.read()
     vin = ocr.extract_vin_from_image(contents)
     if not vin:

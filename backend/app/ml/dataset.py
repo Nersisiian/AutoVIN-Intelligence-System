@@ -1,6 +1,6 @@
+
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-import re
+
 
 def extract_features(vin: str) -> dict:
     """Extract WMI, VDS, VIS, Year, Manufacturer from VIN."""
@@ -43,6 +43,6 @@ def load_training_data(filepath: str = "data/vin_dataset.csv"):
             targets_engine.append(row.get('engine', 'Unknown'))
             targets_transmission.append(row.get('transmission', 'Unknown'))
             targets_class.append(row.get('vehicle_class', 'Unknown'))
-        except:
+        except Exception:
             continue
     return pd.DataFrame(features), targets_trim, targets_engine, targets_transmission, targets_class

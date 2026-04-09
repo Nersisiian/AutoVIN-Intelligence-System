@@ -1,7 +1,8 @@
 # /app/ml/model.py
-from sklearn.ensemble import RandomForestClassifier
-import joblib
 from pathlib import Path
+
+import joblib
+from sklearn.ensemble import RandomForestClassifier
 
 MODEL_PATH = Path(__file__).parent / "vin_model.pkl"
 
