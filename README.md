@@ -21,19 +21,19 @@ Production‑ready full‑stack VIN decoding platform with AI‑powered specific
 ## 📁 Project Structure
 
 AutoVIN-Intelligence-System/
-├── backend/ # FastAPI application
-│ ├── app/
-│ │ ├── api/ # endpoints (decode, predict, scan, auction)
-│ │ ├── core/ # config, db, cache, logging
-│ │ ├── ml/ # model training & prediction
-│ │ ├── models/ # SQLAlchemy models
-│ │ └── services/ # business logic (decode, NHTSA, auction, OCR)
-│ ├── tests/ # pytest tests
-│ ├── requirements.txt
-│ └── pyproject.toml
-├── bot/ # Telegram bot (python-telegram-bot)
-├── frontend/ # React + Tailwind dashboard
-├── mobile-app/ # Expo React Native app
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── ml/
+│   │   ├── models/
+│   │   └── services/
+│   ├── tests/
+│   ├── requirements.txt
+│   └── pyproject.toml
+├── bot/
+├── frontend/
+├── mobile-app/
 ├── docker-compose.yml
 ├── Dockerfile.backend
 ├── Dockerfile.bot
