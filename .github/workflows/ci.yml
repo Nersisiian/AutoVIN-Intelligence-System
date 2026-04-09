@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 
 on:
   push:
@@ -37,6 +37,26 @@ jobs:
         run: |
           pip install -r backend/requirements.txt
           pip install pytest pytest-asyncio httpx
+      - name: Generate dummy ML model for tests
+        run: |
+          python -c "
+          import joblib
+          import pandas as pd
+          from sklearn.ensemble import RandomForestClassifier
+          from sklearn.preprocessing import LabelEncoder
+          import os
+          os.makedirs('backend/app/ml', exist_ok=True)
+          models = {}
+          encoders = {}
+          for target in ['trim', 'engine', 'transmission', 'vehicle_class']:
+              le = LabelEncoder()
+              le.fit(['Base', 'SE', 'Limited'])  # dummy classes
+              encoders[target] = le
+              model = RandomForestClassifier(n_estimators=10)
+              model.fit([[0], [1], [2]], le.transform(['Base', 'SE', 'Limited']))
+              models[target] = model
+          joblib.dump({'models': models, 'encoders': encoders, 'feature_columns': ['wmi_A', 'vds_B']}, 'backend/app/ml/vin_model.pkl')
+          "
       - name: Run tests
         env:
           REDIS_URL: redis://localhost:6379
