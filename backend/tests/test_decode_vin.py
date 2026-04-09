@@ -1,6 +1,7 @@
 import pytest
 from httpx import ASGITransport, AsyncClient
 
+
 @pytest.mark.asyncio
 async def test_decode_vin_validation_error():
     from app.main import app
