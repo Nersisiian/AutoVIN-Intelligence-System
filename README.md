@@ -18,35 +18,6 @@ Production‑ready full‑stack VIN decoding platform with AI‑powered specific
 - **Docker** – one‑command startup with `docker-compose up --build`.
 - **CI/CD** – GitHub Actions runs linting (ruff), tests (pytest), and Docker builds.
 
-
-# 🚗 AutoVIN Intelligence System
-
-> AI-powered platform for vehicle data decoding, analytics, and intelligent insights using VIN (Vehicle Identification Number)
-
----
-
-## 🧠 Overview
-
-**AutoVIN Intelligence System** — это современная AI-платформа для анализа автомобилей по VIN-коду.
-Система использует машинное обучение, API интеграции и микросервисную архитектуру для получения, обработки и визуализации данных о транспортных средствах.
-
-VIN используется для идентификации автомобиля (модель, двигатель, год выпуска и т.д.) ([kartica.rs][1])
-
----
-
-## ⚡ Key Features
-
-* 🔍 VIN Decoder (NHTSA / external APIs)
-* 🤖 AI-based anomaly detection (fraud, inconsistencies)
-* 📊 Interactive analytics dashboard
-* 🚗 Vehicle history aggregation
-* 🧾 Smart report generation (PDF/JSON)
-* 🔐 Authentication & role-based access
-* 🌐 REST API (FastAPI)
-* 🧩 Modular microservices architecture
-* 🐳 Docker-ready deployment
-* ⚙️ CI/CD (GitHub Actions)
-
 ---
 
 ## 🏗️ Architecture
@@ -78,7 +49,7 @@ AutoVIN-Intelligence-System/
 ├── nginx/                   # reverse proxy
 └── README.md
 ```
-
+---
 
 ### Screenshot
 ![Dashboard screenshot](docs/dashboard-screenshot.svg)
