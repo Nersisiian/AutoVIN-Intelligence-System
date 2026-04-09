@@ -21,7 +21,6 @@ Production‑ready full‑stack VIN decoding platform with AI‑powered specific
 
 ## 📁 Project Structure
 
-\`\`\`
 AutoVIN-Intelligence-System/
 ├── backend/
 │   ├── app/
@@ -40,27 +39,6 @@ AutoVIN-Intelligence-System/
 ├── Dockerfile.backend
 ├── Dockerfile.bot
 └── .github/workflows/ci.yml
-\`\`\`
-"@
-
-$readmePath = "README.md"
-$readmeContent = Get-Content $readmePath -Raw -ErrorAction SilentlyContinue
-
-if (-not $readmeContent) {
-    Set-Content -Path $readmePath -Value $structure -Encoding UTF8
-} else {
-    if ($readmeContent -match "## 📁 Project Structure") {
-        $readmeContent = $readmeContent -replace "(?s)## 📁 Project Structure.*?(\r?\n##|\r?\n---|\z)", "$structure`r`n`$1"
-    } else {
-        Add-Content -Path $readmePath -Value "`r`n$structure" -Encoding UTF8
-    }
-    Set-Content -Path $readmePath -Value $readmeContent -Encoding UTF8
-}
-
-git add README.md
-git commit -m "Add project structure tree to README"
-git push
-```
 
 ### Screenshot
 ![Dashboard screenshot](docs/dashboard-screenshot.svg)
