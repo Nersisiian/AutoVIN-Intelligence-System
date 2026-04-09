@@ -37,10 +37,10 @@ jobs:
         run: |
           pip install -r backend/requirements.txt
           pip install pytest pytest-asyncio httpx
-      - name: Create dummy ML model for tests
+      - name: Create dummy ML model
         run: |
           python -c "
-          import joblib, os, pandas as pd
+          import joblib, os
           from sklearn.ensemble import RandomForestClassifier
           from sklearn.preprocessing import LabelEncoder
           os.makedirs('backend/app/ml', exist_ok=True)
