@@ -1,7 +1,9 @@
+from pathlib import Path
+
 import joblib
 import pandas as pd
-from pathlib import Path
 from app.ml.dataset import extract_features
+
 
 class VINSpecPredictor:
     def __init__(self, model_path: str | None = None):
