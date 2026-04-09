@@ -37,7 +37,8 @@ async def test_decode_vin_success_shape(monkeypatch: pytest.MonkeyPatch):
         response = await client.post("/decode-vin", json={"vin": "1HGCM82633A004352"})
         assert response.status_code == 200
         data = response.json()
-        assert "make" in data
+        assert "make" in data["specs"]
         assert "model" in data
         assert data["make"] == "Honda"
         assert data["model"] == "Civic"
+

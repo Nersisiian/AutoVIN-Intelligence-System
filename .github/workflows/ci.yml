@@ -38,6 +38,8 @@ jobs:
           pip install -r backend/requirements.txt
           pip install -e backend/
           pip install pytest pytest-asyncio httpx
+      - name: Debug installed packages
+        run: pip list | grep -E "autovin|fastapi|sqlalchemy"
       - name: Create dummy ML model
         run: |
           python -c "
@@ -62,7 +64,7 @@ jobs:
           python -c "
           import asyncio
           from sqlalchemy.ext.asyncio import create_async_engine
-          from app.models import Base  # теперь импортируетс€ __init__.py, где VinDecodeRecord зарегистрирован
+          from app.models import Base
           async def init_db():
               engine = create_async_engine('postgresql+asyncpg://test_user:test_pass@localhost:5432/test_db')
               async with engine.begin() as conn:
