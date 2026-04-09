@@ -57,6 +57,6 @@ jobs:
       - name: Run tests
         env:
           REDIS_URL: redis://localhost:6379
-          DATABASE_URL: postgresql://test_user:test_pass@localhost:5432/test_db
+          DATABASE_URL: postgresql+asyncpg://test_user:test_pass@localhost:5432/test_db
           PYTHONPATH: backend
         run: pytest backend/tests/
