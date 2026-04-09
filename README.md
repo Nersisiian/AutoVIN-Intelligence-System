@@ -25,28 +25,32 @@ Production‑ready full‑stack VIN decoding platform with AI‑powered specific
 ```bash
 AutoVIN-Intelligence-System/
 │
-├── backend/                 # FastAPI backend
+├── backend/                 
 │   ├── app/
-│   │   ├── api/             # API routes
-│   │   ├── core/            # config, security
-│   │   ├── models/          # DB models
-│   │   ├── services/        # business logic
-│   │   ├── ai/              # ML/AI modules
+│   │   ├── api/             
+│   │   ├── core/            
+│   │   ├── models/         
+│   │   ├── services/        
+│   │   ├── ml/            
+│   │   ├── bot/
+│   │   ├── mobile-app/
 │   │   └── utils/
 │   ├── tests/
 │   └── Dockerfile
 │
-├── frontend/                # React frontend
+├── frontend/                
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   └── hooks/
+│   │   ├── lib/
+│   │   ├── ui/
 │   └── Dockerfile
 │
+├── docs/
+│
 ├── docker-compose.yml
-├── .github/workflows/       # CI/CD pipelines
-├── nginx/                   # reverse proxy
+├── Dockerfile.backend
+├── Dockerfile.bot
+├── .github/workflows/
+├── .ruff.toml/                        
 └── README.md
 ```
 ---
