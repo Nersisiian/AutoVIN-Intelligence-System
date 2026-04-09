@@ -38,7 +38,6 @@ AutoVIN-Intelligence-System/
 ├── Dockerfile.backend
 ├── Dockerfile.bot
 └── .github/workflows/ci.yml
-
 ```
 
 ### Screenshot
