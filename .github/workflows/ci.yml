@@ -38,21 +38,6 @@ jobs:
           pip install -r backend/requirements.txt
           pip install -e backend/
           pip install pytest pytest-asyncio httpx
-      - name: Create database tables
-        env:
-          DATABASE_URL: postgresql+asyncpg://test_user:test_pass@localhost:5432/test_db
-        run: |
-          python -c "
-          import asyncio
-          from sqlalchemy.ext.asyncio import create_async_engine
-          from app.models.base import Base
-          async def init_db():
-              engine = create_async_engine('postgresql+asyncpg://test_user:test_pass@localhost:5432/test_db')
-              async with engine.begin() as conn:
-                  await conn.run_sync(Base.metadata.create_all)
-              await engine.dispose()
-          asyncio.run(init_db())
-          "
       - name: Create dummy ML model
         run: |
           python -c "
@@ -69,6 +54,21 @@ jobs:
               model.fit([[0]], [0])
               models[target] = model
           joblib.dump({'models': models, 'encoders': encoders, 'feature_columns': ['wmi_dummy']}, 'backend/app/ml/vin_model.pkl')
+          "
+      - name: Create database tables
+        env:
+          DATABASE_URL: postgresql+asyncpg://test_user:test_pass@localhost:5432/test_db
+        run: |
+          python -c "
+          import asyncio
+          from sqlalchemy.ext.asyncio import create_async_engine
+          from app.models.base import Base
+          async def init_db():
+              engine = create_async_engine('postgresql+asyncpg://test_user:test_pass@localhost:5432/test_db')
+              async with engine.begin() as conn:
+                  await conn.run_sync(Base.metadata.create_all)
+              await engine.dispose()
+          asyncio.run(init_db())
           "
       - name: Run tests
         env:
