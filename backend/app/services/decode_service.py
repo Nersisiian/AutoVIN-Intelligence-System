@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from typing import Any
 
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from app.core.cache import cache
 from app.core.config import settings
 from app.core.logging import get_logger
@@ -12,6 +10,7 @@ from app.services.ai_estimator import ai_estimator
 from app.services.nhtsa import nhtsa_client
 from app.services.vin_local import decode_vin_locally
 from app.services.vindecoder_external import vindecoder_client
+from sqlalchemy.ext.asyncio import AsyncSession
 
 log = get_logger(component="decode_service")
 

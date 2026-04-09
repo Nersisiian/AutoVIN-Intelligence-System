@@ -2,6 +2,11 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 
+from app.api.routes import router as api_router
+from app.core.config import settings
+from app.core.db import engine
+from app.core.logging import configure_logging, get_logger
+from app.models.base import Base
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse
@@ -10,12 +15,6 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 from sqlalchemy import text
-
-from app.api.routes import router as api_router
-from app.core.config import settings
-from app.core.db import engine
-from app.core.logging import configure_logging, get_logger
-from app.models.base import Base
 
 configure_logging(settings.log_level)
 log = get_logger(component="main")
