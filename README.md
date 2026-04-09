@@ -19,26 +19,66 @@ Production‑ready full‑stack VIN decoding platform with AI‑powered specific
 - **CI/CD** – GitHub Actions runs linting (ruff), tests (pytest), and Docker builds.
 
 
-## 📁 Project Structure
+# 🚗 AutoVIN Intelligence System
 
+> AI-powered platform for vehicle data decoding, analytics, and intelligent insights using VIN (Vehicle Identification Number)
+
+---
+
+## 🧠 Overview
+
+**AutoVIN Intelligence System** — это современная AI-платформа для анализа автомобилей по VIN-коду.
+Система использует машинное обучение, API интеграции и микросервисную архитектуру для получения, обработки и визуализации данных о транспортных средствах.
+
+VIN используется для идентификации автомобиля (модель, двигатель, год выпуска и т.д.) ([kartica.rs][1])
+
+---
+
+## ⚡ Key Features
+
+* 🔍 VIN Decoder (NHTSA / external APIs)
+* 🤖 AI-based anomaly detection (fraud, inconsistencies)
+* 📊 Interactive analytics dashboard
+* 🚗 Vehicle history aggregation
+* 🧾 Smart report generation (PDF/JSON)
+* 🔐 Authentication & role-based access
+* 🌐 REST API (FastAPI)
+* 🧩 Modular microservices architecture
+* 🐳 Docker-ready deployment
+* ⚙️ CI/CD (GitHub Actions)
+
+---
+
+## 🏗️ Architecture
+
+```bash
 AutoVIN-Intelligence-System/
-├── backend/
+│
+├── backend/                 # FastAPI backend
 │   ├── app/
-│   │   ├── api/
-│   │   ├── core/
-│   │   ├── ml/
-│   │   ├── models/
-│   │   └── services/
+│   │   ├── api/             # API routes
+│   │   ├── core/            # config, security
+│   │   ├── models/          # DB models
+│   │   ├── services/        # business logic
+│   │   ├── ai/              # ML/AI modules
+│   │   └── utils/
 │   ├── tests/
-│   ├── requirements.txt
-│   └── pyproject.toml
-├── bot/
-├── frontend/
-├── mobile-app/
+│   └── Dockerfile
+│
+├── frontend/                # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── hooks/
+│   └── Dockerfile
+│
 ├── docker-compose.yml
-├── Dockerfile.backend
-├── Dockerfile.bot
-└── .github/workflows/ci.yml
+├── .github/workflows/       # CI/CD pipelines
+├── nginx/                   # reverse proxy
+└── README.md
+```
+
 
 ### Screenshot
 ![Dashboard screenshot](docs/dashboard-screenshot.svg)
