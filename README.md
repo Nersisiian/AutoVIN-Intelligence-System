@@ -1,29 +1,25 @@
-## AutoVIN Intelligence System
+# AutoVIN Intelligence System
 
-Production-ready full-stack VIN decoding platform.
+[![CI](https://github.com/Nersisiian/AutoVIN-Intelligence-System/actions/workflows/ci.yml/badge.svg)](https://github.com/Nersisiian/AutoVIN-Intelligence-System/actions/workflows/ci.yml)
 
-### Features
-- **VIN decode**: `POST /decode-vin` (17-char validation, async)
-- **Local decode**: WMI/VDS/VIS parsing + country + model-year inference
-- **External decode**: NHTSA VPIC integration (free) + VINDecoder (paid if key, deterministic mock if not)
-- **AI fallback**: embedded ML estimator to fill gaps when data is sparse
-- **Caching**: Redis (24h TTL)
-- **Rate limiting**: global per-IP limits
-- **Persistence**: PostgreSQL stores decode records
-- **Frontend**: React + Tailwind dashboard UI
-- **DevOps**: Docker + docker-compose, GitHub Actions CI/CD
-- **CLI**: `vin-decoder <VIN>` (calls the API)
+Production‑ready full‑stack VIN decoding platform with AI‑powered specification prediction, OCR scanning, auction data aggregation, Telegram bot, and mobile client.
 
-### Architecture (high level)
-```mermaid
-flowchart LR
-  U[User] --> F[React + Tailwind Frontend]
-  F -->|POST /decode-vin| B[FastAPI Backend]
-  B --> R[(Redis Cache)]
-  B --> P[(PostgreSQL)]
-  B --> N[NHTSA VPIC API]
-  B --> V[VINDecoder API or Mock]
-  B --> A[AI Estimator (sklearn)]
+## 🚀 Features
+
+- **VIN decoding** – `POST /decode-vin` validates 17‑character VIN and returns structured vehicle data.
+- **Multi‑source data fusion** – local WMI/VDS/VIS parsing, NHTSA VPIC API (free), VINDecoder (paid with mock fallback).
+- **AI prediction** – RandomForest model estimates trim, engine, transmission, and vehicle class when external APIs fail or return sparse data.
+- **OCR VIN scanner** – extract VIN from images using OpenCV + Tesseract (`/scan-vin-image`).
+- **Auction data** – scrape Copart & IAAI for lot status, damage, price (`/auction-data`).
+- **Telegram bot** – async bot that replies with decoded specs, ML predictions, and auction info.
+- **Mobile app** – React Native (Expo) client with camera scanning and API integration.
+- **Caching & rate limiting** – Redis (24h TTL) and SlowAPI per‑IP limits.
+- **PostgreSQL** – stores decode history.
+- **Docker** – one‑command startup with `docker-compose up --build`.
+- **CI/CD** – GitHub Actions runs linting (ruff), tests (pytest), and Docker builds.
+
+## 📁 Project Structure
+
 ```
 
 ### Screenshot
