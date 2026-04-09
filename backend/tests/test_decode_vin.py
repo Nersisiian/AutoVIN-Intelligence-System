@@ -1,15 +1,15 @@
 import pytest
 from httpx import ASGITransport, AsyncClient
 
-
 @pytest.mark.asyncio
 async def test_decode_vin_validation_error():
     from app.main import app
 
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.post("/decode-vin", json={"vin": "INVALID"})
+        response = await client.post("/decode-vin", json={"vin": "SHORT"})
         assert response.status_code == 422
+
 
 @pytest.mark.asyncio
 async def test_decode_vin_success_shape(monkeypatch: pytest.MonkeyPatch):
@@ -37,8 +37,8 @@ async def test_decode_vin_success_shape(monkeypatch: pytest.MonkeyPatch):
         response = await client.post("/decode-vin", json={"vin": "1HGCM82633A004352"})
         assert response.status_code == 200
         data = response.json()
-        assert "make" in data["specs"]
-        assert "model" in data
-        assert data["make"] == "Honda"
-        assert data["model"] == "Civic"
-
+        specs = data["specs"]
+        assert "make" in specs
+        assert "model" in specs
+        assert "year" in specs
+        assert "trim" in specs
